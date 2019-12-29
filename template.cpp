@@ -41,7 +41,10 @@ const int EPS = 1e-6;
 #define vin(a,n) rep(i,n){int x;cin>>x;a.pb(x);}
 #define arrin(arr,n) rep(i,n){cin>>arr[i];}
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define vp(a) rep(i,a.size()){cout<<a[i]<<" ";}
+=======
+>>>>>>> 90e5a236baa39855a583c22bedc77974cbd589c1
 =======
 >>>>>>> 90e5a236baa39855a583c22bedc77974cbd589c1
 #define fbo find_by_order
