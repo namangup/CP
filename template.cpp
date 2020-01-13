@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
+typedef unsigned long long ull;
 typedef long long ll;
 typedef pair<int,int> ii;
 typedef vector<int> vi;
@@ -40,19 +40,49 @@ const int EPS = 1e-6;
 #define pb push_back
 #define vin(a,n) rep(i,n){int x;cin>>x;a.pb(x);}
 #define arrin(arr,n) rep(i,n){cin>>arr[i];}
-<<<<<<< HEAD
-<<<<<<< HEAD
 #define vp(a) rep(i,a.size()){cout<<a[i]<<" ";}
-=======
->>>>>>> 90e5a236baa39855a583c22bedc77974cbd589c1
-=======
->>>>>>> 90e5a236baa39855a583c22bedc77974cbd589c1
 #define fbo find_by_order
 #define ook order_of_key
 /*
 ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     */
+inline void fastRead_int(int &x) {
+    register int c = getchar_unlocked();
+    x = 0;
+    int neg = 0;
+
+    for(; ((c<48 || c>57) && c != '-'); c = getchar_unlocked());
+
+    if(c=='-') {
+    	neg = 1;
+    	c = getchar_unlocked();
+    }
+
+    for(; c>47 && c<58 ; c = getchar_unlocked()) {
+    	x = (x<<1) + (x<<3) + c - 48;
+    }
+
+    if(neg)
+    	x = -x;
+}
+
+inline void fastRead_string(char *str)
+{
+    register char c = 0;
+    register int i = 0;
+
+    while (c < 33)
+        c = getchar_unlocked();
+
+    while (c != '\n') {
+        str[i] = c;
+        c = getchar_unlocked();
+        i = i + 1;
+    }
+
+    str[i] = '\0';
+}
 int main()
 {
     ios_base::sync_with_stdio(false);
