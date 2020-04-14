@@ -44,58 +44,51 @@ const auto start_time = std::chrono::high_resolution_clock::now();
 #define vp(a) rep(i,a.size()){cout<<a[i]<<" ";}
 #define fbo find_by_order
 #define ook order_of_key
-#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define ignore cin.ignore(256,'\n');
-ll gcd(ll x,ll y)
-{
-    if(x==0) return y;
-    return gcd(y%x,x);
-}
-ll powM(ll x,ll y,ll m)
-{
-    ll ans=1,r=1;
-    x%=m;
-    while(r>0&&r<=y)
-    {
-        if(r&y)
-        {
-            ans*=x;
-            ans%=m;
-        }
-        r<<=1;
-        x*=x;
-        x%=m;
-    }
-    return ans;
-}
-ll modI(ll a, ll m)
-{
-    ll m0=m,y=0,x=1;
-    if(m==1) return 0;
-    while(a>1)
-    {
-        ll q=a/m;
-        ll t=m;
-        m=a%m;
-        a=t;
-        t=y;
-        y=x-q*y;
-        x=t;
-    }
-    if(x<0) x+=m0;
-    return x;
-}
+
 void solve()
 {
-    
+    int n;
+    cin>>n;
+    if(n==1)
+    {
+        cout<<"1\n1 1\n";
+        return;
+    }
+    if(n==2)
+    {
+        cout<<"1\n2 1 2\n";
+        return;
+    }
+    int d=n/2;
+    cout<<d<<"\n";
+    cout<<3;
+    repA(i,1,3)
+    cout<<" "<<i;
+    cout<<"\n";
+    int k=4;
+    rep(i,d-1)
+    {
+        if((k+1)<=n){
+        printf("2 %d %d\n",k,k+1);
+        k+=2;
+        }
+        //cout<<2<<" "<<k++<<" "<<k++<<"\n";
+        else
+        {
+            printf("1 %d\n",k);
+            //cout<<1<<" "<<k<<"\n";
+        }
+        
+    }
 }
 int main()
 {
-    fastio;
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    #endif
+    //sieve();
+    //fastio;
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
     int t;
     cin>>t;
     while(t--)
@@ -104,7 +97,5 @@ int main()
     }
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end_time - start_time;
-    #ifndef ONLINE_JUDGE
-    cerr << "Time Taken : " << diff.count() << "s\n";
-    #endif
+    //cerr << "Time Taken : " << diff.count() << "s\n";
 }

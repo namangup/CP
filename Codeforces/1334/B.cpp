@@ -20,7 +20,6 @@ const int INF = 1e9 + 7;
 const int MOD = 1e9 + 7;
 const int MAXN = 1e6 + 3;
 const int EPS = 1e-6;
-const auto start_time = std::chrono::high_resolution_clock::now();
 
 #define _  %  MOD
 #define __ %= MOD
@@ -46,65 +45,34 @@ const auto start_time = std::chrono::high_resolution_clock::now();
 #define ook order_of_key
 #define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);
 #define ignore cin.ignore(256,'\n');
-ll gcd(ll x,ll y)
-{
-    if(x==0) return y;
-    return gcd(y%x,x);
-}
-ll powM(ll x,ll y,ll m)
-{
-    ll ans=1,r=1;
-    x%=m;
-    while(r>0&&r<=y)
-    {
-        if(r&y)
-        {
-            ans*=x;
-            ans%=m;
-        }
-        r<<=1;
-        x*=x;
-        x%=m;
-    }
-    return ans;
-}
-ll modI(ll a, ll m)
-{
-    ll m0=m,y=0,x=1;
-    if(m==1) return 0;
-    while(a>1)
-    {
-        ll q=a/m;
-        ll t=m;
-        m=a%m;
-        a=t;
-        t=y;
-        y=x-q*y;
-        x=t;
-    }
-    if(x<0) x+=m0;
-    return x;
-}
+/*
+ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    */
 void solve()
 {
-    
+    int n,x;
+    cin>>n>>x;
+    vin(a,n);
+    sort(a.begin(),a.end(),greater<int>());
+    ll k=0;
+    int ans=0;
+    rep(i,n)
+    {
+        k=k+a[i]-x;
+        if(k<0)
+        break;
+        ans++;
+    }
+    cout<<ans<<endl;
 }
 int main()
 {
     fastio;
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    #endif
     int t;
     cin>>t;
     while(t--)
     {
         solve();
     }
-    auto end_time = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> diff = end_time - start_time;
-    #ifndef ONLINE_JUDGE
-    cerr << "Time Taken : " << diff.count() << "s\n";
-    #endif
 }

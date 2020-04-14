@@ -46,48 +46,44 @@ const auto start_time = std::chrono::high_resolution_clock::now();
 #define ook order_of_key
 #define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);
 #define ignore cin.ignore(256,'\n');
-ll gcd(ll x,ll y)
-{
-    if(x==0) return y;
-    return gcd(y%x,x);
-}
-ll powM(ll x,ll y,ll m)
-{
-    ll ans=1,r=1;
-    x%=m;
-    while(r>0&&r<=y)
-    {
-        if(r&y)
-        {
-            ans*=x;
-            ans%=m;
-        }
-        r<<=1;
-        x*=x;
-        x%=m;
-    }
-    return ans;
-}
-ll modI(ll a, ll m)
-{
-    ll m0=m,y=0,x=1;
-    if(m==1) return 0;
-    while(a>1)
-    {
-        ll q=a/m;
-        ll t=m;
-        m=a%m;
-        a=t;
-        t=y;
-        y=x-q*y;
-        x=t;
-    }
-    if(x<0) x+=m0;
-    return x;
-}
+
 void solve()
 {
-    
+    int n;
+    cin>>n;
+    map<int,int> m;
+    vi a;
+    rep(i,n)
+    {
+        int x;
+        cin>>x;
+        m[x]++;
+        a.pb(x);
+    }
+    int un=0;
+    int mx=0;
+    int mxe;
+    mit i=m.begin();
+    for(;i!=m.end();i++)
+    {
+        //cout<<i->second<<" ";
+        un++;
+        if(i->second>mx)
+        {
+            mx=i->second;
+            mxe=i->first;
+            //1 2 3 3 3 3 4 4 5 5 5
+        } 
+    }
+    un--;
+    int k=min(un,mx);
+    if(mx-un>=2)
+    {
+        k++;
+    }
+    if(k==0&&n>=2)
+    k=1;
+    cout<<k<<"\n";
 }
 int main()
 {

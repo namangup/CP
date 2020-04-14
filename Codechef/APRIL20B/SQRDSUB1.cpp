@@ -44,58 +44,66 @@ const auto start_time = std::chrono::high_resolution_clock::now();
 #define vp(a) rep(i,a.size()){cout<<a[i]<<" ";}
 #define fbo find_by_order
 #define ook order_of_key
-#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define ignore cin.ignore(256,'\n');
-ll gcd(ll x,ll y)
-{
-    if(x==0) return y;
-    return gcd(y%x,x);
-}
-ll powM(ll x,ll y,ll m)
-{
-    ll ans=1,r=1;
-    x%=m;
-    while(r>0&&r<=y)
-    {
-        if(r&y)
-        {
-            ans*=x;
-            ans%=m;
-        }
-        r<<=1;
-        x*=x;
-        x%=m;
-    }
-    return ans;
-}
-ll modI(ll a, ll m)
-{
-    ll m0=m,y=0,x=1;
-    if(m==1) return 0;
-    while(a>1)
-    {
-        ll q=a/m;
-        ll t=m;
-        m=a%m;
-        a=t;
-        t=y;
-        y=x-q*y;
-        x=t;
-    }
-    if(x<0) x+=m0;
-    return x;
-}
+
 void solve()
 {
-    
+    int n;
+    cin>>n;
+    vi a,b;
+    rep(i,n)
+    {
+        int x;
+        cin>>x;
+        a.pb(x);
+        if(x%4!=0 && x%2==0)
+        b.pb(-1);
+        else if(x%4==0)
+        b.pb(0);
+        else
+        {
+            b.pb(1);
+        }
+        cout<<b[i]<<" ";
+    }
+    cout<<"\n";
+    int dp[n]={0};
+    ll pos=1,neg=0,tot=(ll)n*(n+1)/2;
+    ll r=0;
+    repA(i,0,n-1)
+    {
+        if(b[i]==0)
+        {
+            r+=pos*neg;
+            cout<<i<<" "<<pos<<" "<<neg<<" "<<r<<"\n";
+            pos=1;
+            neg=0;
+            continue;
+        }
+        else if((i>0&&b[i-1]==0&&b[i]!=0)||(i==0&&b[i]!=0))
+        {
+            dp[i]=b[i];
+            dp[i]==1?pos++:neg++;
+            continue;
+        }
+        dp[i]=b[i]*dp[i-1];
+        dp[i]==1?pos++:neg++;
+    }
+    r+=pos*neg;
+    cout<<n<<" "<<pos<<" "<<neg<<" "<<r<<"\n";
+    rep(i,n)
+    cout<<dp[i]<<" ";
+    cout<<"\n";
+    ll ans=tot-r;
+    //cout<<"\n"<<pos<<" "<<neg<<"\n";
+    cout<<ans<<"\n";
 }
 int main()
 {
     fastio;
-    #ifndef ONLINE_JUDGE
     freopen("input.txt","r",stdin);
     freopen("output.txt","w",stdout);
-    #endif
     int t;
     cin>>t;
     while(t--)
@@ -104,7 +112,5 @@ int main()
     }
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end_time - start_time;
-    #ifndef ONLINE_JUDGE
     cerr << "Time Taken : " << diff.count() << "s\n";
-    #endif
 }

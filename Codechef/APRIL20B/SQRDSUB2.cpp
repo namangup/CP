@@ -44,67 +44,73 @@ const auto start_time = std::chrono::high_resolution_clock::now();
 #define vp(a) rep(i,a.size()){cout<<a[i]<<" ";}
 #define fbo find_by_order
 #define ook order_of_key
-#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);
+#define fastio ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
 #define ignore cin.ignore(256,'\n');
-ll gcd(ll x,ll y)
-{
-    if(x==0) return y;
-    return gcd(y%x,x);
-}
-ll powM(ll x,ll y,ll m)
-{
-    ll ans=1,r=1;
-    x%=m;
-    while(r>0&&r<=y)
-    {
-        if(r&y)
-        {
-            ans*=x;
-            ans%=m;
-        }
-        r<<=1;
-        x*=x;
-        x%=m;
+
+inline void fastRead_int(int &x) {
+    register int c = getchar_unlocked();
+    x = 0;
+    int neg = 0;
+
+    for(; ((c<48 || c>57) && c != '-'); c = getchar_unlocked());
+
+    if(c=='-') {
+    	neg = 1;
+    	c = getchar_unlocked();
     }
-    return ans;
-}
-ll modI(ll a, ll m)
-{
-    ll m0=m,y=0,x=1;
-    if(m==1) return 0;
-    while(a>1)
-    {
-        ll q=a/m;
-        ll t=m;
-        m=a%m;
-        a=t;
-        t=y;
-        y=x-q*y;
-        x=t;
+
+    for(; c>47 && c<58 ; c = getchar_unlocked()) {
+    	x = (x<<1) + (x<<3) + c - 48;
     }
-    if(x<0) x+=m0;
-    return x;
+
+    if(neg)
+    	x = -x;
 }
+int b[100001];
 void solve()
 {
-    
+    int n;
+    fastRead_int(n);
+    rep(i,n)
+    {
+        int x;
+        fastRead_int(x);
+        if(x%4!=0 && x%2==0)
+        b[i]=1;
+        else if(x%4==0)
+        b[i]=2;
+        else
+        {
+            b[i]=0;
+        }
+        //cout<<b[i]<<" ";
+    }
+    unordered_map<int,int> pre;
+    ll ans=0,sum=0;
+    rep(i,n)
+    {
+        sum+=b[i];
+        if(sum==1)
+        ans++;
+        if(pre.find(sum-1)!=pre.end())
+        ans+=pre[sum-1];
+        pre[sum]++;
+    }
+    ll tot=(ll)n*(n+1)/2;
+    printf("%lld\n",tot-ans);
 }
 int main()
 {
-    fastio;
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt","r",stdin);
-    freopen("output.txt","w",stdout);
-    #endif
+    //fastio;
+    //freopen("input.txt","r",stdin);
+    //freopen("output.txt","w",stdout);
     int t;
-    cin>>t;
+    fastRead_int(t);
     while(t--)
     {
         solve();
     }
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end_time - start_time;
-    #ifndef ONLINE_JUDGE
-    cerr << "Time Taken : " << diff.count() << "s\n";
-    #endif
+    //cerr << "Time Taken : " << diff.count() << "s\n";
 }
