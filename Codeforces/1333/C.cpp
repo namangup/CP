@@ -1,4 +1,3 @@
-/******Author : c0d3rpr0********/
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -28,7 +27,7 @@ const auto start_time = std::chrono::high_resolution_clock::now();
 
 #define      each(it,s)        for(vit it = s.begin(); it != s.end(); ++it)
 #define      sortA(v)          sort(v.begin(), v.end())
-#define      sortD(v)          sort(v.begin(), v.end(), greater<ll>())
+#define      sortD(v)          sort(v.begin(), v.end(), greater<auto>())
 #define      fill(a)           memset(a, 0, sizeof (a))
 
 #define      rep(i, n)         for(ll i = 0; i < (n); ++i)
@@ -86,23 +85,42 @@ ll modI(ll a, ll m)
     if(x<0) x+=m0;
     return x;
 }
-ll max(ll a,ll b,ll c){
-	return max(max(a,b),c);
-}
-ll power(ll x,ll y){ll z=1;while(y>0){if(y%2)z=(z*x);x =(x*x) ;y/=2;}return z;}
 void solve()
 {
-
+    ll n;
+    cin>>n;
+    vin(a,n);
+    ll b[n+1];
+    b[0]=0;
+    rep(i,n)
+    {
+        b[i+1]=a[i]+b[i];
+    }
+    set<ll> s={0};
+    ll ans=0;
+    ll j=0;
+    rep(i,n)
+    {
+        for(;j<n;j++)
+        {
+            if(s.count(b[j+1]))
+            break;
+            s.insert(b[j+1]);
+        }
+        ans+=j-i;
+        s.erase(b[i]);
+    }
+    cout<<ans<<"\n";
 }
 int main()
 {
     fastio;
     #ifndef ONLINE_JUDGE
-    freopen("/home/naman/Desktop/CP/input.txt","r",stdin);
-    freopen("/home/naman/Desktop/CP/output.txt","w",stdout);
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
     #endif
-    ll t;
-    cin>>t;
+    ll t=1;
+    //cin>>t;
     while(t--)
     {
         solve();

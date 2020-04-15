@@ -90,19 +90,36 @@ ll max(ll a,ll b,ll c){
 	return max(max(a,b),c);
 }
 ll power(ll x,ll y){ll z=1;while(y>0){if(y%2)z=(z*x);x =(x*x) ;y/=2;}return z;}
+bool sortcol(vi &a,vi &b)
+{
+    return a[0]>=b[0];
+}
 void solve()
 {
-
+    string a,b;
+    getline(cin,a);
+    getline(cin,b);
+    if(b.length()%a.length()!=0)
+    cout<<"NO";
+    else
+    {
+        int x=b.length()/a.length();
+        string s="";
+        rep(i,x) s+=a;
+        if(s==b) cout<<"YES\n"<<x;
+        else cout<<"NO";
+    }
+    
 }
 int main()
 {
     fastio;
     #ifndef ONLINE_JUDGE
-    freopen("/home/naman/Desktop/CP/input.txt","r",stdin);
-    freopen("/home/naman/Desktop/CP/output.txt","w",stdout);
+    //freopen("/home/naman/Desktop/CP/input.txt","r",stdin);
+    //freopen("/home/naman/Desktop/CP/output.txt","w",stdout);
     #endif
-    ll t;
-    cin>>t;
+    ll t=1;
+    //cin>>t;
     while(t--)
     {
         solve();
@@ -110,6 +127,6 @@ int main()
     auto end_time = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end_time - start_time;
     #ifndef ONLINE_JUDGE
-    cerr << "Time Taken : " << diff.count() << "s\n";
+    //cerr << "Time Taken : " << diff.count() << "s\n";
     #endif
 }

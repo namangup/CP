@@ -92,7 +92,16 @@ ll max(ll a,ll b,ll c){
 ll power(ll x,ll y){ll z=1;while(y>0){if(y%2)z=(z*x);x =(x*x) ;y/=2;}return z;}
 void solve()
 {
-
+    ll n,k;
+    cin>>n>>k;
+    vin(a,n);
+    sortA(a);
+    ll ans=0;
+    rep(i,n)
+    {
+        ans += a[i]+k<=5;
+    }
+    cout<<ans/3<<"\n";
 }
 int main()
 {
@@ -101,8 +110,8 @@ int main()
     freopen("/home/naman/Desktop/CP/input.txt","r",stdin);
     freopen("/home/naman/Desktop/CP/output.txt","w",stdout);
     #endif
-    ll t;
-    cin>>t;
+    ll t=1;
+    //cin>>t;
     while(t--)
     {
         solve();
