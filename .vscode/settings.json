@@ -5,6 +5,7 @@
         "cmath": "cpp",
         "vector": "cpp",
         "*.tcc": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "bitset": "cpp"
     }
 }
